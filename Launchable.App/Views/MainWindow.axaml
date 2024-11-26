@@ -2,12 +2,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        x:Class="Launchable.App.MainWindow"
+        xmlns:vm="using:Launchable.App.ViewModels"
         Title="Launchable.App"
         SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen"
-        >
-  <TextBox 
+        x:CompileBindings="True"
+		  x:DataType="vm:MainWindowViewModel"
+        x:Class="Launchable.App.Views.MainWindow">
+  <Design.DataContext>
+    <vm:MainWindowViewModel/>
+  </Design.DataContext>
+
+
+  <TextBox
     Height="50"
     Width="700"
     FontSize="24"
@@ -15,5 +22,12 @@
     FontFamily="{StaticResource CourierFont}"
     Watermark="Enter a command..."
     VerticalContentAlignment="Center"
-    />
+    KeyDown="KeyHandler"
+    Text="{Binding Command}"
+    >
+    
+
+  </TextBox>
+
+
 </Window>
