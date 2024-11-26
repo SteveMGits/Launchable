@@ -7,4 +7,7 @@
     <Application.Styles>
         <FluentTheme />
     </Application.Styles>
+  <Application.Resources>
+    <FontFamily x:Key="CourierFont">avares://Launchable.App/Assets/Fonts/CourierPrime#Courier Prime</FontFamily>
+  </Application.Resources>
 </Application>
