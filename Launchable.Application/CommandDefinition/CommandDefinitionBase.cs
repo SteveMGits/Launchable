@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Avalonia.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Launchable.Core.CommandDefinition;
 
 public abstract class CommandDefinitionBase
 {
-    public required string CommandKey { get; set; }
+    public string? CommandKey { get; set; }
 
     public IDictionary<string, string?> Options
     {
@@ -27,5 +28,5 @@ public abstract class CommandDefinitionBase
 
     private IDictionary<string, string?> _options = new Dictionary<string, string?>();
 
-    public abstract Task RunCommandAsync();
+    public abstract Task RunCommandAsync(Window source);
 }

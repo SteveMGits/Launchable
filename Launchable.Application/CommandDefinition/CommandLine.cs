@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Avalonia.Controls;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -12,9 +13,7 @@ public class CommandLine : CommandDefinitionBase
     public string? ScriptFilePath { get; set; }
     public string? CommandText { get; set; }
 
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-    public override async Task RunCommandAsync()
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+    public override Task RunCommandAsync(Window param)
     {
         try
         {
@@ -55,11 +54,14 @@ public class CommandLine : CommandDefinitionBase
             }
 
             proc?.Start();
+
+            return Task.CompletedTask;
         }
 
         catch (Exception e)
         {
             Console.WriteLine(e);
+            return Task.FromException(e);
         }
     }
 }

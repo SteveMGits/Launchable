@@ -1,4 +1,5 @@
 ﻿using Launchable.Core.CommandDefinition;
+using Launchable.Core.CommandDefinition.CompiledCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ public static class CommandLibrary
     public static void HydrateCommands()
     {
         // Flush existing commands
-        Commands = new Dictionary<string, CommandDefinitionBase>();
+        Commands = CompiledCommandFactory.CompiledCommands();
 
         var launchableDirectory = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}{Path.DirectorySeparatorChar}Launchable";
 
@@ -60,7 +61,7 @@ public static class CommandLibrary
                     continue;
                 }
 
-                Commands.Add(commandDefinition.CommandKey, (CommandDefinitionBase)fullCommand);
+                Commands.Add(commandDefinition.CommandKey ?? commandFile, (CommandDefinitionBase)fullCommand);
             }
 
             catch (Exception ex)
@@ -72,14 +73,4 @@ public static class CommandLibrary
     }
 
     public static Dictionary<string, CommandDefinitionBase> Commands { get; set; } = new Dictionary<string, CommandDefinitionBase>();
-
-    public static async Task RunCommand(string key)
-    {
-        if (Commands.TryGetValue(key, out var commandDefinition))
-        {
-            await commandDefinition.RunCommandAsync();
-        }
-
-        throw new ArgumentException($"No command found called \"{key}\"");
-    }
 }

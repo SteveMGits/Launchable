@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Avalonia.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ public class EmptyCommandDefinition : CommandDefinitionBase
 {
     public string? Type { get; set; }
 
-    public override Task RunCommandAsync()
+    public override Task RunCommandAsync(Window param)
     {
         throw new NotImplementedException("Can't execute an Empty Command Definition!");
     }

@@ -26,7 +26,7 @@ public partial class MainWindow : Window
 
             if(CommandLibrary.Commands.TryGetValue(command, out var commandDefinition))
             {
-                Task.Run(commandDefinition.RunCommandAsync);
+                Task.Run(() => commandDefinition.RunCommandAsync(this));
             }
             else
             {
