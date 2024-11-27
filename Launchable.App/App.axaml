@@ -1,6 +1,6 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="Launchable.App.App"
+             x:Class="Launchable.UI.App"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
@@ -8,6 +8,6 @@
         <FluentTheme />
     </Application.Styles>
   <Application.Resources>
-    <FontFamily x:Key="CourierFont">avares://Launchable.App/Assets/Fonts/CourierPrime#Courier Prime</FontFamily>
+    <FontFamily x:Key="CourierFont">avares://Launchable.UI/Assets/Fonts/CourierPrime#Courier Prime</FontFamily>
   </Application.Resources>
 </Application>

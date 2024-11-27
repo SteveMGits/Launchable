@@ -30,4 +30,8 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Launchable.Application\Launchable.Core.csproj" />
+  </ItemGroup>
 </Project>

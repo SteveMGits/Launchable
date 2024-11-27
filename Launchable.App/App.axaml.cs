@@ -1,9 +1,9 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Launchable.App.Views;
+using Launchable.UI.Views;
 
-namespace Launchable.App;
+namespace Launchable.UI;
 
 public partial class App : Application
 {

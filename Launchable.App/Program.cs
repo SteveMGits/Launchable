@@ -1,7 +1,8 @@
 ﻿using Avalonia;
+using Launchable.Core;
 using System;
 
-namespace Launchable.App;
+namespace Launchable.UI;
 
 class Program
 {
@@ -9,8 +10,14 @@ class Program
     // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
     // yet and stuff might break.
     [STAThread]
-    public static void Main(string[] args) => BuildAvaloniaApp()
+    public static void Main(string[] args)
+    {
+        // SJM TODO - need to move this to the host process
+        CommandLibrary.HydrateCommands();
+
+        BuildAvaloniaApp()
         .StartWithClassicDesktopLifetime(args);
+    }
 
     // Avalonia configuration, don't remove; also used by visual designer.
     public static AppBuilder BuildAvaloniaApp()
@@ -18,4 +25,6 @@ class Program
             .UsePlatformDetect()
             .WithInterFont()
             .LogToTrace();
+
+
 }
