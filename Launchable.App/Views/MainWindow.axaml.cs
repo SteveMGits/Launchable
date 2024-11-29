@@ -3,6 +3,7 @@ using Avalonia.Input;
 using Launchable.Core;
 using System;
 using System.ComponentModel;
+using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,6 +11,8 @@ namespace Launchable.UI.Views;
 
 public partial class MainWindow : Window
 {
+    private bool shouldShow = false;
+
 
     public MainWindow()
     {
@@ -30,6 +33,8 @@ public partial class MainWindow : Window
             if(CommandLibrary.Commands.TryGetValue(command, out var commandDefinition))
             {
                 Task.Run(() => commandDefinition.RunCommandAsync(this));
+                MainInput.Text = "";
+                Hide();
             }
             else
             {

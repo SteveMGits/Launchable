@@ -12,7 +12,9 @@
   </Application.Resources>
   <TrayIcon.Icons>
     <TrayIcons>
-      <TrayIcon ToolTipText="Avalonia Tray Icon ToolTip">
+      <TrayIcon
+        Icon="/Assets/tray-icon.ico"
+        ToolTipText="Launchable">
         <TrayIcon.Menu>
           <NativeMenu>
             <NativeMenuItem Header="Exit" />

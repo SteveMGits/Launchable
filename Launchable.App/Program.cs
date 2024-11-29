@@ -1,6 +1,8 @@
 ﻿using Avalonia;
 using Launchable.Core;
+using SharpHook;
 using System;
+using System.Threading;
 
 namespace Launchable.UI;
 
