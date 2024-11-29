@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Launchable.Core;
 using System;
+using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,6 +14,8 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+
+        Closing += HandleClosing;
     }
 
     public void KeyHandler(object sender, KeyEventArgs args)
@@ -33,5 +36,11 @@ public partial class MainWindow : Window
                 // SJM TODO - how to handle
             }
         }
+    }
+
+    private void HandleClosing(object? sender, WindowClosingEventArgs args)
+    {
+        Hide();
+        args.Cancel = true;
     }
 }

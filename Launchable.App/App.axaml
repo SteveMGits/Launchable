@@ -10,4 +10,15 @@
   <Application.Resources>
     <FontFamily x:Key="CourierFont">avares://Launchable.UI/Assets/Fonts/CourierPrime#Courier Prime</FontFamily>
   </Application.Resources>
+  <TrayIcon.Icons>
+    <TrayIcons>
+      <TrayIcon ToolTipText="Avalonia Tray Icon ToolTip">
+        <TrayIcon.Menu>
+          <NativeMenu>
+            <NativeMenuItem Header="Exit" />
+          </NativeMenu>
+        </TrayIcon.Menu>
+      </TrayIcon>
+    </TrayIcons>
+  </TrayIcon.Icons>
 </Application>
