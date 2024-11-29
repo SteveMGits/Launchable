@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using Avalonia.Controls;
 using Launchable.Core;
 using SharpHook;
 using System;
@@ -13,12 +14,20 @@ class Program
     // yet and stuff might break.
     [STAThread]
     public static void Main(string[] args)
+    => BuildAvaloniaApp().Start(AppMain, args);
+
+    // Application entry point. Avalonia is completely initialized.
+    static void AppMain(Application app, string[] args)
     {
-        // SJM TODO - need to move this to the host process
+        // A cancellation token source that will be 
+        // used to stop the main loop
+        var cts = new CancellationTokenSource();
+
+        // Do your startup code here
         CommandLibrary.HydrateCommands();
 
-        BuildAvaloniaApp()
-        .StartWithClassicDesktopLifetime(args);
+        // Start the main loop
+        app.Run(cts.Token);
     }
 
     // Avalonia configuration, don't remove; also used by visual designer.

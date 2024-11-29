@@ -25,39 +25,37 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        var mainWindow = new MainWindow();
+
+        var hook = new TaskPoolGlobalHook();
+
+        hook.KeyPressed += (object? sender, KeyboardHookEventArgs e) =>
         {
-            desktop.MainWindow = new MainWindow();
+            pressedKeys.Add(e.Data.KeyCode);
 
-            var hook = new TaskPoolGlobalHook();
-
-            hook.KeyPressed += (object? sender, KeyboardHookEventArgs e) =>
+            for (int i = 0; i < pressedKeys.Count; i++)
             {
-                pressedKeys.Add(e.Data.KeyCode);
-
-                for (int i = 0; i < pressedKeys.Count; i++)
-                {
-                    if (pressedKeys[i] != showShortcut[i])
-                    {
-                        pressedKeys.Clear();
-                        return;
-                    }
-                }
-
-                if (pressedKeys.Count == showShortcut.Length)
+                if (pressedKeys[i] != showShortcut[i])
                 {
                     pressedKeys.Clear();
-                    Dispatcher.UIThread.Post(desktop.MainWindow.Show);
+                    return;
                 }
-            };
+            }
 
-            var thread = new Thread(hook.Run)
+            if (pressedKeys.Count == showShortcut.Length)
             {
-                IsBackground = true
-            };
+                pressedKeys.Clear();
+                Dispatcher.UIThread.Post(mainWindow.Show);
+            }
+        };
+
+        var thread = new Thread(hook.Run)
+        {
+            IsBackground = true
+        };
             
-            thread.Start();
-        }
+        thread.Start();
+
 
         base.OnFrameworkInitializationCompleted();
     }

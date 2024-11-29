@@ -11,14 +11,13 @@ namespace Launchable.UI.Views;
 
 public partial class MainWindow : Window
 {
-    private bool shouldShow = false;
-
-
     public MainWindow()
     {
         InitializeComponent();
 
         Closing += HandleClosing;
+        // SJM TODO - fix this kludge
+        SizeChanged += HandleSizeChanged;
     }
 
     public void KeyHandler(object sender, KeyEventArgs args)
@@ -47,5 +46,10 @@ public partial class MainWindow : Window
     {
         Hide();
         args.Cancel = true;
+    }
+
+    private void HandleSizeChanged(object? sender, SizeChangedEventArgs args)
+    {
+        MainInput.Focus();
     }
 }
