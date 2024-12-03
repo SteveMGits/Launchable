@@ -1,7 +1,10 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Launchable.UI"
              x:Class="Launchable.UI.App"
-             RequestedThemeVariant="Default">
+             RequestedThemeVariant="Default"
+             x:DataType="vm:App"
+             >
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.Styles>
@@ -17,7 +20,7 @@
         ToolTipText="Launchable">
         <TrayIcon.Menu>
           <NativeMenu>
-            <NativeMenuItem Header="Exit" />
+            <NativeMenuItem Header="Exit" Command="{Binding Terminate}" />
           </NativeMenu>
         </TrayIcon.Menu>
       </TrayIcon>

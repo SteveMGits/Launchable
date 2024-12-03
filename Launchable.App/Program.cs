@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Launchable.Core;
 using SharpHook;
 using System;
@@ -9,33 +10,16 @@ namespace Launchable.UI;
 
 class Program
 {
-    // Initialization code. Don't use any Avalonia, third-party APIs or any
-    // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
-    // yet and stuff might break.
-    [STAThread]
-    public static void Main(string[] args)
-    => BuildAvaloniaApp().Start(AppMain, args);
-
-    // Application entry point. Avalonia is completely initialized.
-    static void AppMain(Application app, string[] args)
-    {
-        // A cancellation token source that will be 
-        // used to stop the main loop
-        var cts = new CancellationTokenSource();
-
-        // Do your startup code here
-        CommandLibrary.HydrateCommands();
-
-        // Start the main loop
-        app.Run(cts.Token);
-    }
-
-    // Avalonia configuration, don't remove; also used by visual designer.
+    // This method is needed for IDE previewer infrastructure
     public static AppBuilder BuildAvaloniaApp()
-        => AppBuilder.Configure<App>()
-            .UsePlatformDetect()
-            .WithInterFont()
-            .LogToTrace();
+      => AppBuilder.Configure<App>().UsePlatformDetect();
 
-
+    // The entry point. Things aren't ready yet, so at this point
+    // you shouldn't use any Avalonia types or anything that expects
+    // a SynchronizationContext to be ready
+    public static int Main(string[] args)
+    {
+        CommandLibrary.HydrateCommands();
+        return BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+    }
 }

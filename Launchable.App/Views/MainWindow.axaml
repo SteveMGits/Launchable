@@ -7,7 +7,7 @@
         SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen"
         x:CompileBindings="True"
-		  x:DataType="vm:MainWindowViewModel"
+        x:DataType="vm:MainWindowViewModel"
         x:Class="Launchable.UI.Views.MainWindow"
         >
   <Design.DataContext>
